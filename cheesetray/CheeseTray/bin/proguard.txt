@@ -1,0 +1,33 @@
+# view res/layout/dialog_color_picker.xml #generated:111
+# view res/layout/dialog_color_picker.xml #generated:40
+# view res/layout/dialog_color_picker.xml #generated:47
+# view res/layout/dialog_color_picker.xml #generated:54
+# view res/layout/dialog_color_picker.xml #generated:61
+# view res/layout/dialog_color_picker.xml #generated:68
+# view res/layout/dialog_color_picker.xml #generated:94
+-keep class colorpicker.ColorPickerPanelView { <init>(...); }
+
+# view res/xml/preferences.xml #generated:27
+# view res/xml/preferences.xml #generated:34
+# view res/xml/preferences.xml #generated:41
+# view res/xml/preferences.xml #generated:56
+# view res/xml/preferences.xml #generated:63
+# view res/xml/preferences.xml #generated:70
+-keep class colorpicker.ColorPickerPreference { <init>(...); }
+
+# view res/layout/dialog_color_picker.xml #generated:25
+-keep class colorpicker.ColorPickerView { <init>(...); }
+
+# view AndroidManifest.xml #generated:20
+-keep class com.chickenbellyfinn.cheesetray.CheeseTrayService { <init>(...); }
+
+# view AndroidManifest.xml #generated:15
+-keep class com.chickenbellyfinn.cheesetray.SMSReceiver { <init>(...); }
+
+# view res/xml/preferences.xml #generated:107
+# view res/xml/preferences.xml #generated:116
+# view res/xml/preferences.xml #generated:146
+# view res/xml/preferences.xml #generated:89
+# view res/xml/preferences.xml #generated:98
+-keep class seekbar.SeekBarPreference { <init>(...); }
+

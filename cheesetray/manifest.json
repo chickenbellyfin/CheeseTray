@@ -1,0 +1,31 @@
+{
+	"AppDescription": {
+		"en": "A little sampling of your favorite music"
+	},
+	"AppIcon": {
+		"256x256": "icon256.png",
+		"128x128": "icon128.png",
+		"64x64": "icon64.png",
+		"32x32": "icon32.png",
+		"18x18": "icon18.png"
+	},
+	"AppName": {
+		"en": "Cheese Tray"
+	},
+	"BundleIdentifier": "cheesetray",
+	"BundleType": "Application",
+	"BundleVersion": "0.1",
+
+	"Dependencies": {
+	  "api": "0.2.3",
+	  "util": "0.1.0",
+	  "resources": "0.2.2"
+  },
+	"RequiredInterface": 1,
+	"RequiredPermissions": [
+	"https://ws.spotify.com"
+
+	],
+	
+	"VendorIdentifier": "chickenbellyfinn"
+}

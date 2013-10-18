@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:robobunny="http://robobunny.com" >
+	<Preference 
+	    android:key="unlock"
+	    android:title="UNLOCK ALL SETTINGS"
+	    android:summary="Enable all disabled settings!"/>
+    <Preference
+        android:key="gotorate"
+        android:summary="Give feedback for Custom Beam"
+        android:title="Rate This App 5-Stars!" />
+    <Preference
+        android:key="gotodev"
+        android:summary="Check out my other apps!"
+        android:title="More cool apps!" />
+    <PreferenceCategory android:title="Settings">
+    <PreferenceScreen android:title="Colors">
+        <ListPreference 
+            android:key="preset"
+            android:entries="@array/presetOptions"
+            android:entryValues="@array/presetValues"
+            android:title="Select Preset"/>
+        <CheckBoxPreference 
+            android:key="random"
+            android:title="Random Colors"
+            android:disableDependentsState="true"/>
+         <colorpicker.ColorPickerPreference
+            alphaSlider="false"
+            android:key="colorA"
+            android:defaultValue="@color/default_colorA" 
+            android:title="Background 1"
+            android:dependency="random" />    
+                  
+            <colorpicker.ColorPickerPreference
+            android:defaultValue="@color/default_colorB"
+            alphaSlider="false"
+            android:key="colorB"
+            android:title="Background 2" 
+            android:dependency="random"/>  
+                      
+            <colorpicker.ColorPickerPreference
+            android:defaultValue="@color/default_colorC"
+            alphaSlider="true"
+            android:key="colorC"
+            android:title="Beam Color" 
+            android:dependency="random"/>
+            
+            <PreferenceCategory android:title="Low Battery Colors">
+                        <ListPreference 
+            android:key="preset_battery"
+            android:entries="@array/presetOptions"
+            android:entryValues="@array/presetValues"
+            android:title="Select Preset"
+            android:dependency="battery"/>
+
+         <colorpicker.ColorPickerPreference
+            alphaSlider="false"
+            android:key="colorA_battery"
+            android:defaultValue="@color/default_colorA" 
+            android:title="Background 1"
+            android:dependency="battery" />    
+                  
+            <colorpicker.ColorPickerPreference
+            android:defaultValue="@color/default_colorB"
+            alphaSlider="false"
+            android:key="colorB_battery"
+            android:title="Background 2" 
+            android:dependency="battery"/>  
+                      
+            <colorpicker.ColorPickerPreference
+            android:defaultValue="@color/default_colorC"
+            alphaSlider="true"
+            android:key="colorC_battery"
+            android:title="Beam Color" 
+            android:dependency="battery"/>
+            </PreferenceCategory>
+            
+
+            
+            </PreferenceScreen>
+
+            <PreferenceScreen android:title="Shapes">
+
+		<ListPreference 
+		    android:key="shapes"
+		    android:title="Shape Toggle"
+		    android:entries="@array/shapeOptions"
+		    android:entryValues="@array/shapeValues"/>
+		           <seekbar.SeekBarPreference
+            android:defaultValue="20"
+            android:key="quantity"
+            android:max="50"
+            android:title="Beam Quantity"
+            android:summary="  "
+            robobunny:min="5"
+            robobunny:unitsLeft=""
+            robobunny:unitsRight="" />
+        <seekbar.SeekBarPreference
+            android:defaultValue="60"
+            android:key="angle"
+            android:max="359"
+            android:title="Beam Angle"
+            android:summary="  "
+            robobunny:min="0"
+            robobunny:unitsLeft=""
+            robobunny:unitsRight="°" />
+        <seekbar.SeekBarPreference
+            android:defaultValue="0"
+            android:key="bgAngle"
+            android:max="359"
+            android:title="Gradient Angle"
+            android:summary="  "
+            robobunny:min="0"
+            robobunny:unitsLeft=""
+            robobunny:unitsRight="°" />
+                <seekbar.SeekBarPreference
+            android:defaultValue="100"
+            android:key="speed"
+            android:max="1000"
+            android:title="Animation Speed"
+            android:summary="  "
+            robobunny:min="50"
+            robobunny:unitsLeft=""
+            robobunny:unitsRight="%" />
+
+ 
+
+    </PreferenceScreen>
+        <PreferenceScreen android:title="Battery Indicator">
+          <CheckBoxPreference 
+            android:defaultValue="false"
+            android:enabled="true"
+            android:key="battery"
+            android:summaryOff="disabled"
+            android:summaryOn="Colors will indicate battery percentage"
+            android:title="Enable battery indicator"
+            android:disableDependentsState="false"/> 
+        <CheckBoxPreference 
+            android:defaultValue="true"
+            android:enabled="true"
+            android:key="battery_fade"
+            android:summaryOff="Color will switch instantly"
+            android:summaryOn="Color will fade gradually"
+            android:title="Fade colors"
+            android:disableDependentsState="true"/> 
+         <seekbar.SeekBarPreference
+            android:defaultValue="15"
+            android:key="battery_switch"
+            android:max="100"
+            android:summary="Percentage when the colors will change"
+            android:title="Low battery threshold"
+            robobunny:min="0"
+            robobunny:unitsLeft=""
+            robobunny:unitsRight="%"/>
+     
+    </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceScreen android:title="Profiles">  
+                <Preference
+            android:key="save_profile"
+            android:title="Save Current Profile"/>
+        <ListPreference
+            android:key="load_profile"
+            android:title="Load Profile"
+            android:summary="Use a previously saved profile"
+            android:entries="@array/profile_dummy"
+            android:entryValues="@array/profile_dummy" />                  
+        <Preference
+            android:key="clearOptions"
+            android:summary="Warning! This will erase your settings and profiles"
+            android:title="Reset Options" />  
+            </PreferenceScreen>
+
+    <PreferenceCategory android:title="About" >
+	<Preference
+            android:key="about"
+            android:summary="Custom Beam LWP"
+            android:title="Version" />
+	</PreferenceCategory>
+</PreferenceScreen>

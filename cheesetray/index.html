@@ -1,0 +1,136 @@
+<style>
+    @import url('sp://import/css/api.css');
+    body{
+        background: #ecebe8;
+    }
+
+</style>
+
+<img src="logo.png"/><br/>
+
+<br/>
+ <div id="playlist"></div>
+<table id="thetable"><tbody id="np">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="sampler" class="sp-button sp-primary"><b>CHEESE ME</b></button></tbody></table>
+<div id="final"></div>
+<script src="js/jquery.min.js"></script>
+<script src="js/socket.io.js"></script>
+<script type="text/javascript">
+
+    var sp = getSpotifyApi();
+    var models = sp.require("$api/models");
+    var player = models.player;
+
+    document.getElementById("sampler").addEventListener("click", function(){
+        var log = document.getElementById("np");
+        log.innerHTML = "";
+        var socket = io.connect("chickenbellyfinn.com:8082");
+        var results = new Array();
+
+        socket.on("returnData", function(body){
+            console.log("songResult");
+           // console.log(body);
+           //var song = JSON.parse(body);
+            var pname = body.pname;
+            var playlist;
+            for(var i = 0; i < models.library.playlists.length; i++){
+                if(pname == models.library.playlists[i].name){
+                    playlist = models.library.playlists[i];
+                    break;
+                }
+            }
+            var title = body.title;
+            var artist = body.artist;
+            var imageurl = body.image;
+            /*if(!body.worked){
+                var newSong = playlist.tracks[Math.floor(Math.random()*playlist.tracks.length)];
+                title = newSong.title;
+                artist = newSong.artist;
+            }*/
+            //log.innerHTML += "<br/>   ->   "+title + " by " + artist +(body.worked?"":" -fail-   ") + "   ["+pname+"] <br/>";
+            if(body.worked){
+                document.getElementById("thetable").parentNode.removeChild(document.getElementById("thetable"));
+                addtothelist(title, artist, playlist, imageurl);
+            }
+            /*if(remaining == 0){
+                createAndAddPlaylist(results);
+            }*/
+            console.log(title + " by " + artist);
+
+        });
+
+        var playlistList = models.library.playlists;
+        var pl = playlistList[Math.floor(Math.random()*playlistList.length)];
+        log.innerHTML += "CHOOSE   "+pl;
+        var imgdiv = document.getElementById("np");
+        var s = "";
+
+            var plOut = {
+                pname:pl.name,
+                songs:new Array()
+            };
+
+            console.log(pl.name + " : "+pl.length);
+            for(var j = 0; j < pl.tracks.length; j++){
+                plOut.songs[j] = {
+                    "title":pl.tracks[j].name, 
+                    "artist":pl.tracks[j].artists[0].data.name
+                };
+                if(j%7 == 0){
+                    if(j > 1){
+                        console.log(">1");
+                        s += "</tr>";
+                    }
+                    if(j < pl.tracks.length-1){
+                        console.log("<" + (pl.tracks.length-1));
+                        s += "<tr width='100%'>";
+                    }
+                    //imgdiv.innerHTML += "</tr><tr>";
+                }
+                s += "<td><image src='"+pl.tracks[j].image+"' width='130px' height='130px'/></td><td><h1>+</h1></td>";
+
+            }
+            s += "<td><image src='icon.png'/></td><td><h1><b>=</b></h1><td><image src='spinner.gif' width='130px'></td></tr>";
+
+            console.log(s);
+            document.getElementById("sampler").parentNode.removeChild(document.getElementById("sampler"));
+            imgdiv.innerHTML = s;
+            console.log("");
+            console.log(imgdiv.innerHTML);
+
+            if(pl.tracks.length > 0){
+                socket.emit("getData", JSON.stringify(plOut, undefined, 2));
+                //log.innerHTML += "send "+plOut.pname+"<br/>";
+            }
+
+        
+
+    });
+
+
+    function addtothelist(title, artist, playlist, imageurl){
+  // var play = models.Playlist.createTemporary("CheeseTray");
+        rs = "https://ws.spotify.com/search/1/track.json?q="+encodeURIComponent(title+" "+artist);
+        console.log(rs);
+            $.get(rs, 
+            function(error, response, body){
+                console.log(body.responseJSON.tracks[0].href);
+                        // Create a track object from a URI
+                var track = models.Track.fromURI(body.responseJSON.tracks[0].href);
+                document.getElementById("final").innerHTML = "<image src='"+imageurl+"' width='350px'><h1>"+title+"</h1></image>"
+                playlist.data.collaborative = true;
+                var has = false;
+                for(var i = 0; i < playlist.tracks.length; i++){
+                    if(playlist.tracks[i].name == track.name){
+                        has = true;
+                        break;
+                    }
+                }
+                if(!has){
+                playlist.add(track);}
+
+            });
+    }
+
+
+</script>
+

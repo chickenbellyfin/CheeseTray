@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="presetOptions">
+        <item>Phase Beam</item>
+        <item>Sun Beam</item>
+        <item>iOS 7</item>
+        <item>Holo Blue</item>
+        <item>Tropical</item>
+        <item>Red-Blue</item>
+    </string-array>
+    
+    <string-array name="presetValues">
+        <item>preset_phasebeam</item>
+        <item>preset_sunbeam</item>
+        <item>preset_ios7</item>
+        <item>preset_holoblue</item>
+        <item>preset_tropical</item>
+        <item>preset_redblue</item>
+    </string-array>
+    
+    <integer-array name="preset_phasebeam">
+        <item>0xff0c4991</item>
+        <item>0xff2f0545</item>
+        <item>0x80b908ea</item>
+    </integer-array>        
+
+    
+    <integer-array name="preset_sunbeam">
+        <item>0xffff4a00</item>
+        <item>0xffa62828</item>
+        <item>0x80ffce00</item>
+    </integer-array>
+    
+        <integer-array name="preset_ios7">
+        <item>0xff86b7fc</item>
+        <item>0xffd7a6fa</item>
+        <item>0x8086fefe</item>
+    </integer-array>        
+    
+            <integer-array name="preset_holoblue">
+        <item>0xff33b5e5</item>
+        <item>0xff000000</item>
+        <item>0x88ffffff</item>
+    </integer-array>
+        
+    <integer-array name="preset_tropical">
+        <item>0xff13557c</item>
+        <item>0xffff7600</item>
+        <item>0x80fff700</item>
+    </integer-array> 
+    
+    <integer-array name="preset_redblue">
+        <item>0xffff0000</item>
+        <item>0xff1b00ff</item>
+        <item>0x80fdfdfd</item>
+    </integer-array>
+    
+    
+    
+</resources>
